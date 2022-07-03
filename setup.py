@@ -10,4 +10,6 @@ setup(
     packages=find_packages(),
     install_requires=["click", "uvicorn", "fastapi", "sqlalchemy"],
     python_requires=">=3.7",
+    include_package_data=True,
+    package_data={"chess": ["web/dist/*"]},
 )
