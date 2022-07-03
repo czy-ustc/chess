@@ -1,0 +1,100 @@
+{
+    "name_list": {
+        "english_name": [
+            "King",
+            "Queen",
+            "Rook",
+            "Bishop",
+            "Knight",
+            "Pawn"
+        ],
+        "chinese_name": [
+            "王",
+            "后",
+            "车",
+            "象",
+            "马",
+            "兵"
+        ],
+        "abbreviation": [
+            "K",
+            "Q",
+            "R",
+            "B",
+            "N",
+            "P"
+        ],
+        "meaning": [
+            "国王",
+            "皇后",
+            "战车",
+            "主教",
+            "骑士",
+            "兵卒"
+        ]
+    },
+    "display_name": "english_name",
+    "print_name": "abbreviation",
+    "rules": [
+        "KingMoveRule",
+        "QueenMoveRule",
+        "RookMoveRule",
+        "BishopMoveRule",
+        "KnightMoveRule",
+        "PawnMoveRule"
+    ],
+    "evaluation_class": "QuantumValueTable",
+    "greedy": {
+        "evaluate": "QuantumValueTable",
+        "evaluate.optional": [
+            "QuantumValueTable",
+            "ValueTable",
+            "RelativeStrength"
+        ]
+    },
+    "minimax": {
+        "evaluate": "QuantumValueTable",
+        "deepth": 1,
+        "evaluate.optional": [
+            "QuantumValueTable",
+            "ValueTable",
+            "RelativeStrength"
+        ],
+        "deepth.range": [
+            1,
+            3
+        ]
+    },
+    "alphabeta": {
+        "evaluate": "QuantumValueTable",
+        "deepth": 2,
+        "evaluate.optional": [
+            "QuantumValueTable",
+            "ValueTable",
+            "RelativeStrength"
+        ],
+        "deepth.range": [
+            2,
+            6
+        ]
+    },
+    "beamsearch": {
+        "evaluate": "QuantumValueTable",
+        "deepth": 4,
+        "size": 3,
+        "evaluate.optional": [
+            "QuantumValueTable",
+            "ValueTable",
+            "RelativeStrength"
+        ],
+        "deepth.range": [
+            2,
+            6
+        ],
+        "size.range": [
+            2,
+            10
+        ]
+    },
+    "database": "sqlite.db"
+}

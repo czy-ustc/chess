@@ -1,0 +1,185 @@
+<h1>
+    <a id="user-content-量子国际象棋" class="anchor" href="#%E9%87%8F%E5%AD%90%E5%9B%BD%E9%99%85%E8%B1%A1%E6%A3%8B"
+        aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>量子国际象棋</h1>
+<blockquote>
+    <p><strong>遇事不决，量子力学</strong></p>
+</blockquote>
+<h2>
+    <a id="user-content-基本规则" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>基本规则</h2>
+<h3>
+    <a id="user-content-量子棋子" class="anchor" href="#%E9%87%8F%E5%AD%90%E6%A3%8B%E5%AD%90" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>量子棋子</h3>
+<p>量子国际象棋与标准国际象棋的本质区别就是量子国际象棋的棋子需要用量子态描述，棋子可以同时占据和不占据某个给定的方格。这也意味着一个棋子可以同时占据多个方格，当然，根据量子叠加态的概念，这里占据的方格有不同的概率，它们总的概率和为1（如果没有分身被吃掉的话）。在满足特定条件时会对某些棋子进行量子测量，被测量的棋子则会坍塌到某个具体的状态上而不再处于叠加态。
+</p>
+<h3>
+    <a id="user-content-移动" class="anchor" href="#%E7%A7%BB%E5%8A%A8" aria-hidden="true"><span aria-hidden="true"
+            class="octicon octicon-link"></span></a>移动</h3>
+<p>由于引入了叠加态的概念，相比于国际象棋，量子国际象棋的移动类型要丰富得多，可以大致分为标准移动、分身移动、汇合移动三大类。</p>
+<h4>
+    <a id="user-content-标准移动" class="anchor" href="#%E6%A0%87%E5%87%86%E7%A7%BB%E5%8A%A8" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>标准移动</h4>
+<p>所有棋子都可以执行与标准国际象棋相同的动作，如车直走、象直走，也包括王车易位、兵升变等特殊规则。但由于量子态的存在，会有一些特殊的规定：</p>
+<ul>
+    <li>
+        <p>棋子以叠加态的方式占据方格不会阻碍标准移动。如下图所示，F5的黑车以叠加态方式存在，则F2的白车可以越过F5到达F6/F7/F8；反之，E2的白王不处于叠加态，则会阻碍白车到达D2等。</p>
+        <a href="https://camo.githubusercontent.com/56de813b28bfdce0d9031797e356e2d465afd19e901336aa4cc72f4fc8208025/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c54634b2e706e67"
+            target="_blank" rel="nofollow"><img
+                src="https://camo.githubusercontent.com/56de813b28bfdce0d9031797e356e2d465afd19e901336aa4cc72f4fc8208025/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c54634b2e706e67"
+                data-canonical-src="https://s1.328888.xyz/2022/07/02/LTcK.png" style="max-width:100%;"></a>
+    </li>
+    <li>
+        <p>若源棋子不处于叠加态，则如果源棋子越过一个处于叠加态的棋子，则源棋子也会进入叠加态。如下图所示，C3有一个处于叠加态的白马，则如果C2的兵试图前进到C4，则会进入叠加态：兵有50%的概率处于C2，有50%的概率处于C4（因为白马有50%的概率挡在兵的前面）。
+        </p>
+        <a href="https://camo.githubusercontent.com/3455ed9e7c2f17eadc4d9139489537e9b6691e7e82a709667b9c1d0b75ae158f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c424e372e706e67"
+            target="_blank" rel="nofollow"><img
+                src="https://camo.githubusercontent.com/3455ed9e7c2f17eadc4d9139489537e9b6691e7e82a709667b9c1d0b75ae158f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c424e372e706e67"
+                data-canonical-src="https://s1.328888.xyz/2022/07/02/LBN7.png" style="max-width:100%;"></a>
+    </li>
+</ul>
+<h4>
+    <a id="user-content-分身移动" class="anchor" href="#%E5%88%86%E8%BA%AB%E7%A7%BB%E5%8A%A8" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>分身移动</h4>
+<p>所有非兵的棋子都可以进行分身移动。这个移动允许棋子分身，同时占据两个不同的方格，棋子在这两个方格上的概率都是原来的一半。只有未被占据的方格或者被同样颜色和类型棋子占据的方格，才会被认为是合法的移动目标。这也意味着不能通过分身移动吃子。如下图所示，B2的白马可以分身移动到A3和C3。
+</p>
+<p><a href="https://camo.githubusercontent.com/ee2f230d5c0207e214946fa031e922d5b5364db67e79a7547b4553eba310f3ce/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6133772e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/ee2f230d5c0207e214946fa031e922d5b5364db67e79a7547b4553eba310f3ce/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6133772e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/La3w.png" style="max-width:100%;"></a></p>
+<p>如果目标方格被同样颜色和类型的棋子占据，根据规则，源棋子将分身到两个目标方格上，而目标方格的棋子则会被交换到源棋子所在的方格上。如下图所示，B5的白马分身移动到A3和C3上（其中原本A3被白马的一个分身所占据），A3的白马被交换到B5上。
+</p>
+<p><a href="https://camo.githubusercontent.com/9b8fe6a963828f5309b948c36cb09b927f0448c23576bf00a99664e2ec6320f2/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6b4d692e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/9b8fe6a963828f5309b948c36cb09b927f0448c23576bf00a99664e2ec6320f2/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6b4d692e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LkMi.png" style="max-width:100%;"></a></p>
+<h4>
+    <a id="user-content-汇合移动" class="anchor" href="#%E6%B1%87%E5%90%88%E7%A7%BB%E5%8A%A8" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>汇合移动</h4>
+<p>汇合移动是分身移动的逆操作。两个处于叠加态的同源棋子（由同一个棋子分裂而来）可以进行汇合移动，两个棋子合二为一，出现在目标方格的概率为出现在两个源方格的概率和，条件是两个棋子可以在一步内到达同一个未被占据的方格。这也意味着一个汇合移动也不能用来吃子。如下图所示，E4和G4的黑马都可以到达F2和F6，则它们可以汇合移动到F2或F6，得到一个不处于叠加态的黑马。
+</p>
+<p><a href="https://camo.githubusercontent.com/b78e5c3c925634dfcd8bc254d382ca61c09070ce0d7ebfa5c8432f7f633d3cb3/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c3975682e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/b78e5c3c925634dfcd8bc254d382ca61c09070ce0d7ebfa5c8432f7f633d3cb3/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c3975682e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/L9uh.png" style="max-width:100%;"></a></p>
+<h3>
+    <a id="user-content-测量" class="anchor" href="#%E6%B5%8B%E9%87%8F" aria-hidden="true"><span aria-hidden="true"
+            class="octicon octicon-link"></span></a>测量</h3>
+<p>当面临两个不同棋子占据同一方格的可能时即会引发测量。与量子力学里的测量一样，在测量结束后棋子由原本的叠加态坍塌到某一个非叠加态上。根据测量的结果，游戏引擎会选择合适的处理方式，以避免真正出现两个不同棋子占据一个空格的情况。具体如下：
+</p>
+<ul>
+    <li>
+        <p>在吃子的情况下，如果吃子一方处于叠加态，则需要对其进行测量，以判断其是否完成吃子。如下图所示，如果D6的黑马试图吃掉C4的白象，则会首先对黑马进行测量，测量完成后黑马有50%的概率处于D6（以非叠加态，同时G4的黑马也消失了），则黑马可以成功吃掉白象；有50%的概率处于G4（同样以非叠加态），则黑马不能吃掉白象。
+        </p>
+        <a href="https://camo.githubusercontent.com/7385c6342fa54bdc51c6cc14b461b506d39d178c6196ce81282b9701d103620e/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c4b636e2e706e67"
+            target="_blank" rel="nofollow"><img
+                src="https://camo.githubusercontent.com/7385c6342fa54bdc51c6cc14b461b506d39d178c6196ce81282b9701d103620e/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c4b636e2e706e67"
+                data-canonical-src="https://s1.328888.xyz/2022/07/02/LKcn.png" style="max-width:100%;"></a>
+    </li>
+    <li>
+        <p>需要特别强调的是，被吃的一方不需要进行测量。如下图所示，G8的黑马可以直接吃掉F6的白象分身，此后白象就只剩下一个概率为50%的分身了（即白象仍然存活的概率为50%）。</p>
+        <a href="https://camo.githubusercontent.com/6f2fa4142d3a19c57b57be039843c017f3c8d89f82b7db8b38ee4994df713022/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f444744682e706e67"
+            target="_blank" rel="nofollow"><img
+                src="https://camo.githubusercontent.com/6f2fa4142d3a19c57b57be039843c017f3c8d89f82b7db8b38ee4994df713022/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f444744682e706e67"
+                data-canonical-src="https://s1.328888.xyz/2022/07/03/DGDh.png" style="max-width:100%;"></a>
+    </li>
+    <li>
+        <p>目标方格存在棋子且不能吃掉该棋子，如目标方格上存在己方棋子（处于叠加态），则会引发测量，以判断目标方格上是否真正存在棋子。如下图所示，如果F2的白兵希望移动到F3上，则需要对白马进行测量以判断白马实际位于F3（50%的概率）、G1（25%的概率）还是G5（25%的概率）。如果白马在F3上，则白兵移动失败，否则白兵成功移动到F3（白马坍塌到G1或G5）。
+        </p>
+        <a href="https://camo.githubusercontent.com/586e4ca8e9ba7951f3b7cef26c8a5b8271d1c68cab6fc5aa8f9bd3d105dcc47f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6353732e706e67"
+            target="_blank" rel="nofollow"><img
+                src="https://camo.githubusercontent.com/586e4ca8e9ba7951f3b7cef26c8a5b8271d1c68cab6fc5aa8f9bd3d105dcc47f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6353732e706e67"
+                data-canonical-src="https://s1.328888.xyz/2022/07/02/LcSs.png" style="max-width:100%;"></a>
+    </li>
+</ul>
+<h3>
+    <a id="user-content-游戏结束条件" class="anchor" href="#%E6%B8%B8%E6%88%8F%E7%BB%93%E6%9D%9F%E6%9D%A1%E4%BB%B6"
+        aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>游戏结束条件</h3>
+<p>由于叠加态的存在，与传统国际象棋不同，量子国际象棋不存在将死的概念，必须把一方的国王全部吃掉才算游戏结束。如下图所示，H8的黑王分身已经被将死了，但由于H5处还存在另一个黑王分身，哪怕H8的黑王分身被吃掉也不会直接导致游戏结束，只有当H5的黑王也被吃掉之后游戏才真正结束。
+</p>
+<p><a href="https://camo.githubusercontent.com/d3138f5d0d09ee96f5d6ec2961855f18a0a3b02ebd24919b3702c7cbfba98d65/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f446f34532e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/d3138f5d0d09ee96f5d6ec2961855f18a0a3b02ebd24919b3702c7cbfba98d65/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f446f34532e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/03/Do4S.png" style="max-width:100%;"></a></p>
+<p>此外，量子国际象棋还存在一种与传统国际象棋不同的平局规则：当双方同时没有国王时为平局。如下图所示，如果用G5的白王去吃H6的黑王，则有可能出现双方的王同时消失的情况。</p>
+<p><a href="https://camo.githubusercontent.com/6697a3932af2900554e278b97769dcec12e4fc3b74d2c9a8f472e85720bdadf0/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f447344792e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/6697a3932af2900554e278b97769dcec12e4fc3b74d2c9a8f472e85720bdadf0/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30332f447344792e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/03/DsDy.png" style="max-width:100%;"></a></p>
+<h2>
+    <a id="user-content-使用方式" class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>使用方式</h2>
+<h3>
+    <a id="user-content-选择设置玩家" class="anchor" href="#%E9%80%89%E6%8B%A9%E8%AE%BE%E7%BD%AE%E7%8E%A9%E5%AE%B6"
+        aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>选择/设置玩家</h3>
+<p>在游戏开始前首先需要选择和设置双方玩家，如下图所示。</p>
+<p><a href="https://camo.githubusercontent.com/05e1a704e9002510396e336f226ad6afc85ec8f75facdeb6f5799172deffdf94/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c326c302e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/05e1a704e9002510396e336f226ad6afc85ec8f75facdeb6f5799172deffdf94/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c326c302e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/L2l0.png" style="max-width:100%;"></a></p>
+<p>点击“切换”按钮可更换玩家。目前可选的玩家有Random（随机算法）、Greedy（贪心算法）、Minimax（极小极大算法）、AlphaBeta（Alpha-Beta剪枝算法）、BeamSearch（束搜索算法）以及Human（人类）六种。其中前五个分别代表五种人工智能的经典对抗搜索算法，最后一个是人类玩家。
+</p>
+<p><a href="https://camo.githubusercontent.com/15ad403881ef094938ae9c98352129b257c53100e6c76874b3ba80a0c3bac75a/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c564a6f2e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/15ad403881ef094938ae9c98352129b257c53100e6c76874b3ba80a0c3bac75a/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c564a6f2e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LVJo.png" style="max-width:100%;"></a></p>
+<p>不同类型的玩家（算法）有不同的参数，可以点击“修改”按钮对算法的部分关键参数进行配置。默认配置综合考虑了效率和效果，通过减小参数值可减少计算时间，增大参数值可提高算法能力。</p>
+<p><a href="https://camo.githubusercontent.com/956b0c0e33fd8b82330c3771ec3d2e540971add9ff7e425af7476e9bea629b1a/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c786f432e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/956b0c0e33fd8b82330c3771ec3d2e540971add9ff7e425af7476e9bea629b1a/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c786f432e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LxoC.png" style="max-width:100%;"></a></p>
+<h3>
+    <a id="user-content-选择设置棋盘" class="anchor" href="#%E9%80%89%E6%8B%A9%E8%AE%BE%E7%BD%AE%E6%A3%8B%E7%9B%98"
+        aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>选择/设置棋盘</h3>
+<p>有三种开始游戏的方式，分别是新的游戏、经典残局、读取存档。选择某一模式后点击右上角的按钮即可开始游戏。</p>
+<p><a href="https://camo.githubusercontent.com/21e7d898a7523883d28fb0cd2b8d25dfbafdb538c30dce35ed6d2ea7b50ed78c/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c4a53642e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/21e7d898a7523883d28fb0cd2b8d25dfbafdb538c30dce35ed6d2ea7b50ed78c/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c4a53642e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LJSd.png" style="max-width:100%;"></a></p>
+<p>点击“新的开始”可初始化一个标准的开局，同时还可以通过拖拽棋子改变棋子的位置（拖离棋盘则会删除棋子），或将右侧的棋子拖入棋盘中。</p>
+<p><a href="https://camo.githubusercontent.com/b6c2fe2d8b85d32760cb692fb716cc24a4aaa235aa051ddc3d5d4cccdc4b4036/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c796c552e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/b6c2fe2d8b85d32760cb692fb716cc24a4aaa235aa051ddc3d5d4cccdc4b4036/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c796c552e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LylU.png" style="max-width:100%;"></a></p>
+<p>点击“经典残局”或“读取存档”则会出现如下图所示的弹框，选择一个棋局载入即可。</p>
+<p><a href="https://camo.githubusercontent.com/f9211dde4387338c52f764d8bfa452e4182f0d6e0ca41114ecd7062f82db1b83/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c7a6b422e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/f9211dde4387338c52f764d8bfa452e4182f0d6e0ca41114ecd7062f82db1b83/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c7a6b422e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LzkB.png" style="max-width:100%;"></a></p>
+<h3>
+    <a id="user-content-开始游戏" class="anchor" href="#%E5%BC%80%E5%A7%8B%E6%B8%B8%E6%88%8F" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>开始游戏</h3>
+<h4>
+    <a id="user-content-记录" class="anchor" href="#%E8%AE%B0%E5%BD%95" aria-hidden="true"><span aria-hidden="true"
+            class="octicon octicon-link"></span></a>记录</h4>
+<p>在开始游戏后，会出现记录模块，其中有每一步的行棋记录，记录方式基本参照标准国际象棋棋谱的记录方法，如下图所示。右下方的三个按钮可分别进行保存（此后可通过“读取存档”重新载入）、结束和暂停（主要在自动行棋时使用）操作。点击右上方的按钮可以悔棋，撤销上一步走棋。
+</p>
+<p><a href="https://camo.githubusercontent.com/310961379080c97a9d08321a5938ec1b7ebc0b1895a86a9984853245f7b2e389/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c5575792e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/310961379080c97a9d08321a5938ec1b7ebc0b1895a86a9984853245f7b2e389/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c5575792e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LUuy.png" style="max-width:100%;"></a></p>
+<h4>
+    <a id="user-content-标准移动-1" class="anchor" href="#%E6%A0%87%E5%87%86%E7%A7%BB%E5%8A%A8-1" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>标准移动</h4>
+<p>如下图所示，在玩家为Human时，在己方回合，点击己方的某一棋子后，会以蓝色方框框出可能的目标方格，点击其一即可完成标准移动。</p>
+<p><a href="https://camo.githubusercontent.com/51dfb3a111a5fdb581cc2b46d38aad4507749ff52e3c7858d9180b17fd98722f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c67594e2e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/51dfb3a111a5fdb581cc2b46d38aad4507749ff52e3c7858d9180b17fd98722f/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c67594e2e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LgYN.png" style="max-width:100%;"></a></p>
+<h4>
+    <a id="user-content-分身移动-1" class="anchor" href="#%E5%88%86%E8%BA%AB%E7%A7%BB%E5%8A%A8-1" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>分身移动</h4>
+<p>对于分身移动，需要指定两个目标方格（按SHITF键后可选中多个方格作为目标）。如下图所示，在单击选中了F6的黑马的基础上，按SHIFT键的同时点击E4，并再次点击除E4外其余三个蓝框方格中的任意一个即可进行分身移动（注意G4是合法的标准移动的目标，但不是合法的分身移动的目标）。
+</p>
+<p><a href="https://camo.githubusercontent.com/33bce0ecdd110c90ba3640403c61a859b1958c3a6dea58f8dc93c00ffc7d718e/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6650352e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/33bce0ecdd110c90ba3640403c61a859b1958c3a6dea58f8dc93c00ffc7d718e/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c6650352e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LfP5.png" style="max-width:100%;"></a></p>
+<h4>
+    <a id="user-content-汇合移动-1" class="anchor" href="#%E6%B1%87%E5%90%88%E7%A7%BB%E5%8A%A8-1" aria-hidden="true"><span
+            aria-hidden="true" class="octicon octicon-link"></span></a>汇合移动</h4>
+<p>对于汇合移动，需要指定两个棋子（按CTRL键后可选中多个棋子作为源）。如下图所示，在单击选中了F3的白马后，可以进行汇合移动的其他棋子（H3的白马）会以绿色方框框出，按CTRL键同时点击H3后再单击一个合法的汇合移动的目标方格即可完成汇合移动。
+</p>
+<p><a href="https://camo.githubusercontent.com/3fc4130f78af57258c23cb4736b9a8f8fd79321d70418b69ee7b6bd125757631/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c7357462e706e67"
+        target="_blank" rel="nofollow"><img
+            src="https://camo.githubusercontent.com/3fc4130f78af57258c23cb4736b9a8f8fd79321d70418b69ee7b6bd125757631/68747470733a2f2f73312e3332383838382e78797a2f323032322f30372f30322f4c7357462e706e67"
+            data-canonical-src="https://s1.328888.xyz/2022/07/02/LsWF.png" style="max-width:100%;"></a></p>

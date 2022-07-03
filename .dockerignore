@@ -1,0 +1,8 @@
+**/__pycache__
+**/node_modules
+chess/web/public
+chess/web/src
+chess/web/babel.config.js
+chess/web/package-lock.json
+chess/web/package.json
+chess/web/vue.config.js
