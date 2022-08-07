@@ -5,73 +5,38 @@
 
 import json
 from pathlib import Path
-from sqlite3 import Connection as SQLite3Connection
 from typing import Union
 
-from sqlalchemy import (
-    Boolean,
-    Column,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-    create_engine,
-    event,
-)
-from sqlalchemy.engine import Engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
-from sqlalchemy.pool import SingletonThreadPool
-
 from chess.settings import setting
+from chess.orm import ON_DELETE, Model, field, sqlite, Table
 
 
-@event.listens_for(Engine, "connect")
-def _set_sqlite_pragma(dbapi_connection, connection_record):
-    """Open foreign key check."""
-    if isinstance(dbapi_connection, SQLite3Connection):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("PRAGMA foreign_keys=ON;")
-        cursor.close()
-
-
-Base = declarative_base()
-
-
-class Endgame(Base):
+class Endgame(Model):
     """Endgame."""
 
-    __tablename__ = "endgame"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50))
-    type_ = Column(Integer)
-    turn = Column(Boolean)
-    piece = relationship("Piece", backref="piece", passive_deletes=True)
+    id = field.IntegerField(autoincrement=True, primary_key=True)
+    name = field.CharField(max_length=50)
+    type_ = field.IntegerField()
+    turn = field.BooleanField()
 
 
-class Piece(Base):
+class Piece(Model):
     """Pieces in the endgame."""
 
-    __tablename__ = "piece"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    eid = Column(Integer, ForeignKey("endgame.id", ondelete="CASCADE"))
-    color = Column(String(5))
-    name = Column((String(10)))
-    place = relationship("Place", backref="place", passive_deletes=True)
+    id = field.IntegerField(autoincrement=True, primary_key=True)
+    eid = field.ForeignKey(to=Endgame, on_delete=ON_DELETE.CASCADE)
+    color = field.CharField(max_length=5)
+    name = field.CharField(max_length=10)
 
 
-class Place(Base):
+class Place(Model):
     """The place distribution of chess pieces."""
 
-    __tablename__ = "place"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    pid = Column(Integer, ForeignKey("piece.id", ondelete="CASCADE"))
-    col = Column(Integer)
-    row = Column(Integer)
-    probability = Column(Float)
+    id = field.IntegerField(autoincrement=True, primary_key=True)
+    pid = field.ForeignKey(to=Piece, on_delete=ON_DELETE.CASCADE)
+    col = field.IntegerField()
+    row = field.IntegerField()
+    probability = field.FloatField()
 
 
 class Database:
@@ -87,22 +52,10 @@ class Database:
     """
 
     def __init__(self, filename: str = setting.database) -> None:
-        filepath = Path(__file__).with_name(filename).absolute()
-        flag = filepath.exists()
-        self.engine = create_engine(
-            f"sqlite:///{filepath}",
-            poolclass=SingletonThreadPool,
-            connect_args={"check_same_thread": False},
+        sqlite.SqiteEngine(
+            str(Path(__file__).with_name(filename).absolute()),
+            check_same_thread=False,
         )
-        DbSession = sessionmaker(bind=self.engine)
-        self.session = DbSession()
-
-        if not flag:
-            self.create()
-
-    def create(self) -> None:
-        """Create tables."""
-        Base.metadata.create_all(self.engine, checkfirst=True)
 
     def save(
         self, data: Union[list, str], name: str, type_: int, turn: bool = False
@@ -129,28 +82,18 @@ class Database:
             The globally unique number of the archive.
             Can be used to reload the game.
         """
-        session = self.session
-
         if isinstance(data, str):
             data = json.loads(data)
 
         # Create a new endgame.
-        endgame = Endgame(name=name, type_=type_, turn=turn)
-        session.add(endgame)
-        session.flush()
-        id = endgame.id
+        id = Table(Endgame).insert(name=name, type_=type_, turn=turn).id
 
         for d in data:
             # Store the pieces in the database one by one.
-            piece = Piece(eid=id, color=d[0][0], name=d[0][1])
-            session.add(piece)
-            session.flush()
-            pid = piece.id
+            pid = Table(Piece).insert(eid=id, color=d[0][0], name=d[0][1]).id
             for p in d[1]:
-                place = Place(pid=pid, col=p[0], row=p[1], probability=p[2])
-                session.add(place)
+                Table(Place).insert(pid=pid, col=p[0], row=p[1], probability=p[2])
 
-        session.commit()
         return id
 
     def load(self, id: int) -> list:
@@ -160,16 +103,16 @@ class Database:
         The returned data has been processed
         and can be directly converted to Game.
         """
-        session = self.session
-
-        pieces = session.query(Piece).filter_by(eid=id).all()
+        pieces = Table(Endgame).get(id).piece_set
         data = []
         for piece in pieces:
-            places = session.query(Place).filter_by(pid=piece.id).all()
             data.append(
                 [
                     [piece.color, piece.name],
-                    [[place.col, place.row, place.probability] for place in places],
+                    [
+                        [place.col, place.row, place.probability]
+                        for place in piece.place_set
+                    ],
                 ]
             )
         return data
@@ -180,24 +123,16 @@ class Database:
         0 represents the system endgame,
         and 1 represents the endgame saved by the user.
         """
-        session = self.session
-        endgames = session.query(Endgame).filter_by(type_=type_)
-        return [{"id": e.id, "name": e.name, "turn": e.turn} for e in endgames]
+        return [
+            {"id": e.id, "name": e.name, "turn": e.turn}
+            for e in Table(Endgame).where(type_=type_)
+        ]
 
     def get(self, id: int) -> dict:
         """Get the basic information of the endgame according to the `id`."""
-        session = self.session
-        endgame = session.query(Endgame).filter_by(id=id).first()
+        endgame = Table(Endgame).get(id)
         return {"id": endgame.id, "name": endgame.name, "turn": endgame.turn}
 
     def remove(self, id: int) -> None:
         """Delete the endgame according to the id."""
-        session = self.session
-
-        pieces = session.query(Piece).filter_by(eid=id).all()
-        for piece in pieces:
-            session.query(Place).filter_by(pid=piece.id).delete()
-
-        session.query(Piece).filter_by(eid=id).delete()
-        session.query(Endgame).filter_by(id=id).delete()
-        session.commit()
+        Table(Endgame).where(id=id).delete()
